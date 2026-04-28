@@ -1,0 +1,58 @@
+{
+  "entities": {
+    "PortfolioItem": {
+      "title": "Portfolio Item",
+      "description": "A video clip or article written by the journalist.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "type": { "type": "string", "enum": ["video", "article"] },
+        "category": { "type": "string", "enum": ["Politics", "International", "Economy", "Issues"] },
+        "mediaName": { "type": "string" },
+        "url": { "type": "string" },
+        "images": { 
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "isFeatured": { "type": "boolean" }
+      },
+      "required": ["title", "type", "url", "createdAt"]
+    },
+    "SiteConfig": {
+      "title": "Site Configuration",
+      "description": "Global strings and contact info for the site.",
+      "type": "object",
+      "properties": {
+        "tagline": { "type": "string" },
+        "subTagline": { "type": "string" },
+        "heroImageUrl": { "type": "string" },
+        "aboutText": { "type": "string" },
+        "stat1Value": { "type": "string" },
+        "stat1Label": { "type": "string" },
+        "stat2Value": { "type": "string" },
+        "stat2Label": { "type": "string" },
+        "stat3Value": { "type": "string" },
+        "stat3Label": { "type": "string" },
+        "servicesHeadline": { "type": "string" },
+        "servicesSubline": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "instagram": { "type": "string" },
+        "youtube": { "type": "string" },
+        "office": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "portfolio": {
+      "schema": "PortfolioItem",
+      "description": "Collection of journalist works."
+    },
+    "config": {
+      "schema": "SiteConfig",
+      "description": "Singleton configuration for the site."
+    }
+  }
+}

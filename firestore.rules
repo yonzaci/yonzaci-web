@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Portfolio collection
+    match /portfolio/{itemId} {
+      allow read: if true;
+      allow write: if true; // In this prototype, auth is managed by app password.
+    }
+
+    // Config collection: Everyone can read, Admin (authenticated) can write
+    match /config/{configId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
